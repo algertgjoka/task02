@@ -20,7 +20,7 @@ export const handler = async (event: any = {}): Promise<any> => {
       }
     }
     for (const key in todo) {
-      if ((key !== 'title') && (key !== 'description')) {
+      if (!['title', 'description'].includes(key)) {
         delete todo[key];
       }
     }
