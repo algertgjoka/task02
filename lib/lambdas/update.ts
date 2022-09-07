@@ -19,7 +19,11 @@ export const handler = async (event: any = {}): Promise<any> => {
         return { statusCode: 400, body: JSON.stringify({ error: GENERIC_ERROR }) };
       }
     }
-    delete todo['id'];
+    for (const key in todo) {
+      if ((key !== 'title') && (key !== 'description')) {
+        delete todo[key];
+      }
+    }
     const todo_properties = Object.keys(todo);
     if (!todo || todo_properties.length < 1) {
       return { statusCode: 400, body: JSON.stringify({ error: GENERIC_ERROR }) };
